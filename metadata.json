@@ -1,0 +1,6 @@
+{
+  "name": "Highway Emergency Assistance",
+  "description": "Real-time roadside assistance platform connecting travelers with nearby mechanics, towing, and emergency services.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["real-time-updates", "geospatial"]
+}

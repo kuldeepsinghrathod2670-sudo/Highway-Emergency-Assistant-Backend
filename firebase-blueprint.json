@@ -1,0 +1,48 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "Stored user profile information and roles.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "fullName": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string", "enum": ["customer", "provider"] },
+        "phoneNumber": { "type": "string" },
+        "serviceType": { "type": "string", "description": "Specific to providers (e.g., mechanic, towing)" },
+        "isAvailable": { "type": "boolean" },
+        "lastSeen": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "fullName", "role"]
+    },
+    "AssistanceRequest": {
+      "title": "Assistance Request",
+      "description": "An emergency request raised by a traveler.",
+      "type": "object",
+      "properties": {
+        "customerId": { "type": "string" },
+        "type": { "type": "string", "enum": ["breakdown", "fuel", "puncture", "medical", "police"] },
+        "status": { "type": "string", "enum": ["pending", "accepted", "in-progress", "completed", "cancelled"] },
+        "lat": { "type": "number" },
+        "lng": { "type": "number" },
+        "locationName": { "type": "string" },
+        "providerId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" },
+        "notes": { "type": "string" }
+      },
+      "required": ["customerId", "type", "status", "lat", "lng", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile records."
+    },
+    "/requests/{requestId}": {
+      "schema": "AssistanceRequest",
+      "description": "Emergency service requests."
+    }
+  }
+}
